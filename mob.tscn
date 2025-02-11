@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddo7fjrhpp305"]
+
+[ext_resource type="Texture2D" uid="uid://cycmahmb40u2l" path="res://kenney_googly-eyes/PNG/googly-d.png" id="1_0lhuj"]
+[ext_resource type="Script" path="res://mob.gd" id="1_ku7co"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6l6ii"]
+radius = 25.0
+
+[node name="mob" type="CharacterBody2D"]
+position = Vector2(75, 68)
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_ku7co")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.652085, 0.0745351, 3.46541e-06, 1)
+position = Vector2(1.19209e-07, 2.38419e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_0lhuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_6l6ii")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
